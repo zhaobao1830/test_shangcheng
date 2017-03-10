@@ -378,13 +378,88 @@ a:hover{
     display:block;
     opacity:1;
 }
+.navList{
+    margin-left:168px;
+}
+.navList a{
+    padding:0px 21px;
+    font-size:16px;
+    float:left;
+}
+.focus{
+    height:400px;
+    overflow:hidden;
+    position:relative;
+}
+.focus .slide-box div{
+    position:absolute;
+    left:0px;
+    top:0px;
+    height:100%;
+    width:100%;
+    background-repeat:no-repeat;
+    background-position:center center;
+    transition:all .5s;
+    opacity:0;
+    filter:alpha(opacity=0);
+}
+.focus .slide-box div.active{
+    z-index:1;
+    opacity:1;
+    filter:alpha(opacity=100);
+}
+.focus .slide-focus{
+    position:absolute;
+    left:50%;
+    bottom:25px;
+    height:25px;
+    z-index:2;
+    cursor:pointer;
+
+}
+.focus .slide-focus span{
+    width:12px;
+    height:12px;
+    background:rgba(0,0,0,0.2);
+    float:left;
+    margin-right:20px;
+    border:1px solid #eee;
+    transition:all .3s;
+}
+.focus .slide-focus span.on{
+    background:#f00;
+    border-color:#f00;
+}
+
+
+
+
 /*自适应*/
 @media (max-width:800px) {
     .topLinks{
         display:none;
     }
+    .logo{
+        display:none;
+    }
     .searchForm{
         margin-left:0px;
         padding-top:15px;
+    }
+    .nav{
+        display:none;
+    }
+    .home-title{
+        margin-top:10px;
+    }
+    .home-title .ht-tag{
+        display:none;
+    }
+    .home-title .ht-name{
+        margin-left:10px;
+        font-size:18px;
+    }
+    .home-title .ht-more{
+        right:10px;
     }
 }
