@@ -361,7 +361,7 @@
                 <li>
                     <a href="#">
                         <img src="../images/phone1.jpg" class="rl-img">
-                        <p class="mt30">荣耀8</p>
+                        <p class="mt30">荣耀8测试测试</p>
                         <p class="rl-desc">购机送TUP保护壳</p>
                         <p class="red">￥2999元</p>
                     </a>
@@ -921,7 +921,70 @@
         </div>
       </div>
     </div>
+    <div class="footer pt20">
+        <div class="footer-trait pb20">
+            <div class="wrapper">
+                <ul>
+                    <li>
+                        <i class="iconfont"></i>500强企业 品质保证
+                    </li>
+                    <li>
+                        <i class="iconfont"></i>7天退货 15天换货
+                    </li>
+                    <li>
+                        <i class="iconfont"></i>99元起免运费
+                    </li>
+                    <li>
+                        <i class="iconfont"></i>448家维修网点 全国联保
+                    </li>
+                </ul>
+                <div class="cl"></div>
+            </div>
+        </div>
+        <div class="wrapper tc">
+            <p class="friend-link tl">友情链接：<a href="#">动脑学院</a><a href="#">腾讯课堂</a><a href="#">动脑学院</a><a href="#">腾讯课堂</a><a href="#">动脑学院</a><a href="#">腾讯课堂</a><a href="#">动脑学院</a><a href="#">腾讯课堂</a><a href="#">动脑学院</a><a href="#">腾讯课堂</a><a href="#">动脑学院</a><a href="#">腾讯课堂</a><a href="#">动脑学院</a><a href="#">腾讯课堂</a><a href="#">动脑学院</a><a href="#">腾讯课堂</a><a href="#">动脑学院</a><a href="#">腾讯课堂</a><a href="#">动脑学院</a><a href="#">腾讯课堂</a><a href="#">动脑学院</a><a href="#">腾讯课堂</a><a href="#">动脑学院</a><a href="#">腾讯课堂</a></p>
+            <p class="mt10">隐私政策 服务协议 Copyright © 2012-2016 VMALL.COM 版权所有 保留一切权利</p>
+            <p>公安备案 湘公网安备 00000000000000号 | 湘ICP备00000000号-0 | 增值电信业务经营许可证：湘A0-20161110 | 网络文化经营许可证：湘网文[2016] 0000-000号</p>
+            <p class="mt10 pb20">
+                <a href="#"><img src="../images/f1.png"></a>
+                <a href="#"><img src="../images/f2.png"></a>
+                <a href="#"><img src="../images/f3.png"></a>
+            </p>
+        </div>
+    </div>
+    <!--
+    css命名用-比较可取，当然驼峰命名不是不可取
+    1、自己使用方便理解
+    2、方便自己开发
 
+    命名尤其不要用下划线，不要用数字
+    -->
+    <div class="quick-nav" id="quickNav">
+        <a href="javascript:void(0);" class="qn-item active" data-index="0">热销推荐</a>
+        <a href="javascript:void(0);" class="qn-item" data-index="1">母婴玩具</a>
+        <a href="javascript:void(0);" class="qn-item" data-index="2">生鲜水果</a>
+        <a href="javascript:void(0);" class="qn-item" data-index="3">家具建材</a>
+        <a href="javascript:void(0);" class="qn-item" data-index="4">医药保健</a>
+        <a href="javascript:void(0);" class="qn-item" data-index="5">珠宝饰品</a>
+        <a href="javascript:void(0);" class="qn-item" data-index="6">户外活动</a>
+        <a href="javascript:void(0);" id="goTop">返回顶部</a>
+        <div class="nav-status"></div>
+    </div>
+    <!--
+1、单独设置背景
+2、点击走动：获取相应标题滚动到页面顶部的高度（class或标签，建议是class），跳转到获取的位置即可
+    一：定义一个自定义属性，标记为当前的下标
+	二：点击获取属性
+	三：获取标题[获取属性下标]，然后获取到页面高度
+	四：跳转到相应位置
+
+
+3、滚动页面：获取当前高度、匹配当前高度和标题高度，如果当前高度是在标题高度以内，那么就判定是当前标题的状态
+
+
+4、滚动到页面顶部隐藏快捷操作
+
+-->
 <script type="text/javascript" src="../js/slide.js"></script>
 <script type="text/javascript">
     window.onload=function () {
@@ -929,6 +992,55 @@
         autoSlide.init({
             "slideLi":document.getElementById("slidePic").children
         }); //只是调用Init方法
+
+
+        //快捷菜单操作
+        var qnItem = document.getElementById("quickNav").getElementsByClassName("qn-item");//快捷导航的子项
+        var titleObj = document.getElementsByClassName("home-title");
+        var navStatus = document.getElementById("quickNav").getElementsByClassName("nav-status")[0];
+        for(var i=0;i<qnItem.length;i++){
+            qnItem[i].onclick = function () {
+                var goScroll=titleObj[this.getAttribute("data-index")] .offsetTop;
+                window.scrollTo(0,goScroll)
+            }
+        }
+
+        function chooseNav() {
+            var currScrollTop=document.body.scrollTop || document.documentElement.scrollTop; //获取当前滚动高度
+            console.log("tf:"+titleObj[0].offsetTop)
+            console.log("curr:"+currScrollTop)
+            if(titleObj[0].offsetTop>currScrollTop){
+                document.getElementById("quickNav").className="quick-nav"
+            }else{
+                document.getElementById("quickNav").className += " show-quick-nav";
+            }
+            for(var i=0;i<titleObj.length;i++){
+                if(currScrollTop<=titleObj[i].offsetTop){//对比高度
+                   var currChoose=document.getElementById("quickNav").getElementsByClassName("active");
+                    if(currChoose.length > 0){
+                        currChoose[0].className = "qn-item";//可以改为获取class，然后替换掉active，去掉空格用trim()
+                    }
+                    qnItem[i].className = "qn-item active";
+                    navStatus.style.top = 50*i+"px";
+                    break;
+                }
+            }
+        }
+
+        /*
+         onscroll调用次数比较频繁，所以要注意性能
+         */
+        window.onscroll = function(){
+            chooseNav();
+        }
+        chooseNav();
+        document.getElementById("goTop").onclick=function () {
+            /*如果想通过原生JS来实现过度跳转到相应位置，那么可以使用定时器
+             获取当前滚动高度，然后对高度逐一递减
+             如果要判断是上去还是下去，直接对当前到顶部的高度和点击的高度对比即可
+             */
+            window.scrollTo(0,0);
+        }
     }
 </script>
 </body>

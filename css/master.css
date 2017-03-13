@@ -141,3 +141,44 @@
     transform:translate3d(0px,-2px,0px);
     z-index:1;
 }
+.product-list li:hover .rl-img{
+    transform:scale(1);
+}
+
+/*首页列表 start*/
+.quick-nav{
+    width:75px;
+    text-align:center;
+    line-height:50px;
+    z-index:10;
+    position:fixed;
+    right:0px;
+    top:10%;
+    background:#ddd;
+    opacity:0;
+    transform:translateY(-10px);
+    transition:all 1s;
+}
+.show-quick-nav{
+    opacity:1;
+    transform:translateY(0px);
+}
+.quick-nav a{
+    color:#333;
+    display:block;
+    transition:all .3s;
+}
+.quick-nav a.active{
+    color:#fff;
+}
+.quick-nav .nav-status{
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:-1;
+    height:50px;
+    width:100%;
+    background:#f90;
+    transition:all .3s;
+}
+/*首页列表 end*/
