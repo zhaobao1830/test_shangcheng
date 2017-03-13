@@ -96,7 +96,7 @@
        return flag
     }
 
-    var autoSlides = new autoSlide;
+    var autoSlides = new autoSlide();
 
     window["autoSlide"] = autoSlides;
 })()  //自执行函数
